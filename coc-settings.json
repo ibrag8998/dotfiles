@@ -1,0 +1,12 @@
+{
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.pylintArgs": ["--rcfile", "~/.pylintrc"],
+
+    "html.enable": true,
+    "html.filetypes": ["html", "handlebars", "htmldjango", "djangohtml"],
+    "html.format.enable": false,
+    "html.html.autoClosingTags": true,
+
+    "emmet.showAbbreviationSuggestions": true,
+    "emmet.includeLanguages": {"djangohtml": "html"}
+}

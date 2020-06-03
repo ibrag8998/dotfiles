@@ -1,0 +1,17 @@
+[MASTER]
+load-plugins=
+    pylint_django
+disable=
+    C0103,  # snake_case
+    C0114,  # missing module docstring
+    C0115,  # too few public methods
+    C0116,  # missing function docstring
+
+    E0402,  # relative import
+
+    R0901,  # too many ancestors
+    R0903,  # too few public methods
+
+    W0621,  # redefining name from outer scope
+
+#    E0307,  # __str__ does not return str, pylint don't know django xd
