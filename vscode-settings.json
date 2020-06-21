@@ -1,0 +1,80 @@
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [79, 120],
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "material-icon-theme",
+  "explorer.confirmDelete": false,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "files.associations": {
+    "*.svelte": "html",
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+  "emmet.includeLanguages": { "django-html": "html" },
+  "python.formatting.provider": "yapf",
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": [
+    "--rcfile",
+    "~/.pylintrc",
+    "--load-plugins",
+    "pylint_django"
+  ],
+  "beautify.language": {
+    "js": {
+      "type": ["javascript", "json", "jsonc"],
+      "filename": [".jshintrc", ".jsbeautifyrc"]
+    },
+    "css": ["css", "less", "scss"],
+    "html": ["htm", "html", "django-html"]
+  },
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "[css]": { "editor.tabSize": 2 },
+  "[sass]": { "editor.tabSize": 2 },
+  "[scss]": { "editor.tabSize": 2 },
+  "[json]": { "editor.tabSize": 2 },
+  "[django-html]": {
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svelte]": { "editor.tabSize": 2 },
+  "explorer.confirmDragAndDrop": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/css/"
+    }
+  ],
+  "python.defaultInterpreterPath": "/usr/bin/python",
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.statusBar.enabled": false,
+  "kite.showWelcomeNotificationOnStartup": false,
+  "window.zoomLevel": 0
+}
+
