@@ -2,7 +2,8 @@ set PATH $PATH \
     $HOME/.local/bin \
     /opt/firefox/firefox \
     $HOME/development/flutter/bin \
-    /usr/local/go/bin
+    /usr/local/go/bin \
+    $HOME/.npm_global/bin
 set JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64"
 
 alias v='nvim'
@@ -13,11 +14,11 @@ alias deac='deactivate'
 alias ll='ls -Ahl'
 alias l='ls -hl'
 
-alias mkvenv='python -m venv venv && . venv/bin/activate.fish && pip install wheel && pip install jedi yapf pylint pynvim'
-
-alias pip_defaults='pip install wheel && pip install jedi yapf pylint pynvim'
+alias mkvenv='python -m venv venv && . venv/bin/activate.fish && pip install wheel && pip install yapf pylint'
 
 alias note='cd ~/notes && v'
+
+alias isol='mkdir isol ; cd isol'
 
 
 function sudo!!
