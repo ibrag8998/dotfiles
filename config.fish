@@ -14,11 +14,11 @@ alias deac='deactivate'
 alias ll='ls -Ahl'
 alias l='ls -hl'
 
-alias mkvenv='python -m venv venv && . venv/bin/activate.fish && pip install wheel && pip install yapf pylint'
-
-alias note='cd ~/notes && v'
+alias mkvenv='python -m venv venv && . venv/bin/activate.fish && pip install wheel && pip install black flake8-awesome mypy'
 
 alias isol='mkdir isol ; cd isol'
+
+alias mgrt='python manage.py makemigrations && python manage.py migrate'
 
 
 function sudo!!

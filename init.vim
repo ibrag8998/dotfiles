@@ -7,38 +7,41 @@ call plug#begin()
 " Coc completer
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Prettier
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+
+" Vim isort
+Plug 'fisadev/vim-isort'
+
+" Auto pairs
+Plug 'jiangmiao/auto-pairs'
+
+" Surround plugin
+Plug 'tpope/vim-surround'
+
+" Ripgrep in vim
+Plug 'jremmen/vim-ripgrep'
+
+" Editorconfig support for vim
+Plug 'editorconfig/editorconfig-vim'
+
 " Emmet
 Plug 'mattn/emmet-vim'
 
 " Django
 Plug 'tweekmonster/django-plus.vim'
 
-" TOML
-Plug 'cespare/vim-toml'
-
 " Multicursors
 Plug 'terryma/vim-multiple-cursors'
-
-" Hoogle search
-Plug 'Twinside/vim-hoogle'
 
 " Python indents
 Plug 'Vimjas/vim-python-pep8-indent'
 
-" Surrounding brackets quotes etc management
-Plug 'tpope/vim-surround'
-
 " Raindow parentheses
 Plug 'kien/rainbow_parentheses.vim'
 
-" Haskell indents
-Plug 'alx741/vim-hindent'
-
 " ALE - Asynchronous Linting Engine
 Plug 'dense-analysis/ale'
-
-" Haskell
-Plug 'neovimhaskell/haskell-vim'
 
 " `gcc` to comment line, `gc` to comment selection
 Plug 'tpope/vim-commentary'
@@ -46,31 +49,49 @@ Plug 'tpope/vim-commentary'
 " Statusline
 Plug 'vim-airline/vim-airline'
 
+" FZF searcher
+Plug 'junegunn/fzf'
+
 " Git changes real time in vim
 Plug 'airblade/vim-gitgutter'
 
 " Code folding
 Plug 'tmhedberg/SimpylFold'
 
-" Ctrl-p
-Plug 'kien/ctrlp.vim'
-
 " NERDTree file browser
 Plug 'preservim/nerdtree'
-
-" Auto pairs () [] ''
-Plug 'jiangmiao/auto-pairs'
 
 " Run git commands in vim
 Plug 'tpope/vim-fugitive'
 
-" Colorschemes
+" NERDTree icons
+Plug 'ryanoasis/vim-devicons'
+
+
+" ====================
+" === Colorschemes ===
+" ====================
+
+Plug 'tomasiser/vim-code-dark'      " VSCode
+" codedark
+
 Plug 'morhetz/gruvbox'              " Good
+" gruvbox
+
 Plug 'junegunn/seoul256.vim'        " Best for python, bad for haskell
+" ???
+
 Plug 'juanpabloaj/vim-pixelmuerto'  " Not so much colors
+" ???
+
 Plug 'mbbill/vim-seattle'           " Bad for haskell
+" ???
+
 Plug 'AlessandroYorba/Sierra'       " Bad for haskell, good for others
+" ???
+
 Plug 'jacoborus/tender.vim'         " Bright
+" tender
 
 " to pick up new colorscheme
 " Plug 'flazz/vim-colorschemes'
@@ -79,7 +100,7 @@ Plug 'jacoborus/tender.vim'         " Bright
 
 call plug#end()
 
-colorscheme tender
+colorscheme codedark
 
 
 " ==========================
@@ -87,21 +108,42 @@ colorscheme tender
 " ==========================
 
 let g:ale_fixers = {
-    \ 'python': ['yapf'],
-    \ 'haskell': ['hindent'],
+    \ '*': ['trim_whitespace'],
+    \ 'python': ['black'],
     \ 'rust': ['rustfmt'],
-    \ 'javascript': ['prettier']
   \ }
+    " \ 'javascript': ['prettier']
 
 let g:ale_linters = {
-    \ 'python': ['pylint'],
-    \ 'haskell': ['hlint']
+    \ 'python': ['flake8'],
+    \ 'javascript': ['eslint'],
   \ }
 
 let g:ale_fix_on_save = 1
 
+" add autoimport functionality
+let g:ale_completion_autoimport = 1
+
+" Show hidden files in directory tree
+let g:NERDTreeShowHidden=1
+
+" autoformatting
+let g:prettier#autoformat = 1
+
+" do not require @format or @prettier tags
+let g:prettier#autoformat_require_pragma = 0
+
+" force async
+let g:prettier#exec_cmd_async = 1
+
+" Kite
+let g:kite_supported_languages = ['python', 'javascript', 'go']
+
 " idk
-let g:airline#extensions#whitespace#enabled = 1
+" let g:airline#extensions#whitespace#enabled = 1
+
+" codedark theme for airline
+let g:airline_theme = 'codedark'
 
 " dope powerline fonts
 let g:airline_powerline_fonts = 1
@@ -125,8 +167,6 @@ let g:airline_section_c = '%<%<%{airline#extensions#fugitiveline#bufname()}%m
 let g:coc_snippet_next = '<tab>'
 
 let g:haskell_classic_highlighting = 1
-
-let g:user_emmet_leader_key = '<leader>'
 
 
 " ===================
@@ -164,14 +204,15 @@ set clipboard+=unnamedplus
 " === UI ===
 " ==========
 
-" Column at 80 chars
-set colorcolumn=80
+" Column at 89 chars
+" I use line-length 88 chars
+set colorcolumn=89
 
 " Highlight line where cursor is on
 set cursorline
 
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+" Set 12 lines to the cursor
+set so=12
 
 " Idk
 set ruler
@@ -236,14 +277,6 @@ au Syntax * RainbowParenthesesLoadBraces
 syntax enable
 syntax on
 
-" Guide on how to disable matching ExtraWhitespace.
-" 'onedark': 235
-" 'seoul': 237
-" 'gruvbox': 235
-" highlight ExtraWhitespace ctermbg=236
-" match ExtraWhitespace /\s\+$/
-" au BufEnter * match ExtraWhitespace /\s\+$/
-
 " ====================
 " === Backup, Undo ===
 " ====================
@@ -288,6 +321,7 @@ vmap / gc
 set laststatus=2
 
 " Format the status line
+set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
 "set statusline=\ %{HasPaste()}%f%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
@@ -300,6 +334,16 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
+" Code movements
+map <A-Right> <C-i>
+map <A-Left> <C-o>
+
+" Command pallette shortcut for ctrl-shift-p
+map <C-S-p> :CocCommand<cr>
+
+" FZF search ctrl-p
+map <C-p> :FZF<cr>
 
 " Folding
 nnoremap <space> za
@@ -323,7 +367,7 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Enter to select completion or snippet
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
     \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 map ? ddkk
@@ -375,23 +419,13 @@ tnoremap <Esc> <C-\><C-n>
 " Python
 au BufNewFile,BufRead *.py call s:python_setup()
 
-" C
-au BufNewFile,BufRead *.c call s:c_setup()
-
-" Rust
-au BufNewFile,BufRead *.rs call s:rust_setup()
-
-" Haskell
-au BufNewFile,BufRead *.hs call s:haskell_setup()
-
 " Languages that uses 4 spaces instead of 2
-au BufNewFile,BufRead *.py,*.c,*.rs call s:four_spaces()
-
-" Delete trailing whitespaces on save
-au BufWritePre *.py,*.js,*.sh,*.hs,*.c,*.cpp :call CleanExtraSpaces()
+au BufNewFile,BufRead *.py call s:four_spaces()
 
 " Markdown automatic line breaking
-au BufNewFile,BufRead *.md set tw=79
+au BufNewFile,BufRead *.md set tw=120
+
+au BufWritePre *.py :Isort
 
 
 " =============
@@ -401,14 +435,9 @@ au BufNewFile,BufRead *.md set tw=79
 " Remove completion preview
 set completeopt-=preview
 
-" Remove trailing whitespaces on save
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
+" Kite's requirements
+"set completeopt+=menuone
+"set completeopt+=noinsert
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -446,27 +475,7 @@ function! s:python_setup()
   map <leader>r :! python %:p<cr>
 endfunction
 
-function! s:c_setup()
-  " Compile and run current buffer in vim cmd section
-  map <leader>r :! gcc %:p<cr>:! ./a.out<cr>
-  " Compile and run current buffer in vim embedded terminal
-  map <leader>s :! gcc %:p<cr>:terminal<cr>i./a.out<cr>
-endfunction
-
-function! s:rust_setup()
-  " Run current project
-  map <leader>r :! cargo run<cr>
-  " Check current project
-  map <leader>c :! cargo check<cr>
-endfunction
-
-function! s:haskell_setup()
-  " Run current buffer in GHCi
-  map <leader>r :terminal<cr>ighci<cr>
-  " Hoogle
-  map <leader>h :Hoogle<space>
-endfunction
-
 function! s:four_spaces()
   setlocal ts=4 sts=4 sw=4
 endfunction
+

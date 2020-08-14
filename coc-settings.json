@@ -1,11 +1,25 @@
 {
-    "python.linting.pylintUseMinimalCheckers": false,
-    "python.linting.pylintArgs": ["--rcfile", "~/.pylintrc"],
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.sortImports.path": "isort",
+    "python.sortImports.args": ["-rc"],
+    "python.jediEnabled": false,
+    "python.autoUpdateLanguageServer": false,
+    "coc.source.file.ignorePatterns": ["**/site-packages/**", "venv/**"],
+    "python.linting.ignorePatterns": [
+      ".vscode/*.py",
+      "**/site-packages/**/*.py",
+      "venv/**"
+    ],
+
+    "javascript.validate.enable": false,
 
     "html.enable": true,
     "html.filetypes": ["html", "handlebars", "htmldjango", "djangohtml"],
     "html.format.enable": false,
-    "html.html.autoClosingTags": true,
+    "html.autoClosingTags": true,
 
     "emmet.showAbbreviationSuggestions": true,
     "emmet.includeLanguages": {"djangohtml": "html"}

@@ -1,13 +1,14 @@
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [79, 120],
+  "editor.rulers": [88, 120],
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
+  "workbench.tree.indent": 12,
   "explorer.confirmDelete": false,
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
-  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespace": true, // required
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -23,14 +24,13 @@
     "**/requirements{/**,*}.{txt,in}": "pip-requirements"
   },
   "emmet.includeLanguages": { "django-html": "html" },
-  "python.formatting.provider": "yapf",
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": [
-    "--rcfile",
-    "~/.pylintrc",
-    "--load-plugins",
-    "pylint_django"
-  ],
+  "python.formatting.provider": "black", // required
+  "python.linting.pylintEnabled": false, // required
+  "python.linting.flake8Enabled": true, // required
+  "python.linting.mypyEnabled": true, // required
+  "python.sortImports.args": ["-rc", "-sp isort.cfg"], // required
+  "python.showStartPage": false,
+  "prettier.semi": false, // required
   "beautify.language": {
     "js": {
       "type": ["javascript", "json", "jsonc"],
@@ -47,6 +47,7 @@
   "[sass]": { "editor.tabSize": 2 },
   "[scss]": { "editor.tabSize": 2 },
   "[json]": { "editor.tabSize": 2 },
+  "[vue]": { "editor.tabSize": 2 },
   "[django-html]": {
     "editor.tabSize": 2
   },
@@ -58,23 +59,19 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[svelte]": { "editor.tabSize": 2 },
-  "explorer.confirmDragAndDrop": false,
-  "liveServer.settings.donotShowInfoMsg": true,
-  "liveServer.settings.donotVerifyTags": true,
-  "liveSassCompile.settings.formats": [
-    {
-      "format": "expanded",
-      "extensionName": ".css",
-      "savePath": "/css/"
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true // required
     }
-  ],
-  "python.defaultInterpreterPath": "/usr/bin/python",
+  },
+  "explorer.confirmDragAndDrop": false,
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.currentLine.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.statusBar.enabled": false,
+  "window.zoomLevel": 0,
   "kite.showWelcomeNotificationOnStartup": false,
-  "window.zoomLevel": 0
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.renameOnType": true,
+  "kite.showGoBetaNotification": false
 }
-
