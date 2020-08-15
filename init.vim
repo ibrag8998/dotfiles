@@ -69,26 +69,26 @@ Plug 'ryanoasis/vim-devicons'
 " === Colorschemes ===
 " ====================
 
-Plug 'tomasiser/vim-code-dark'      " VSCode
 " codedark
+Plug 'tomasiser/vim-code-dark'
 
-Plug 'morhetz/gruvbox'              " Good
 " gruvbox
+Plug 'morhetz/gruvbox'
 
-Plug 'junegunn/seoul256.vim'        " Best for python, bad for haskell
-" ???
+" seoul256
+Plug 'junegunn/seoul256.vim'
 
-Plug 'juanpabloaj/vim-pixelmuerto'  " Not so much colors
-" ???
+" pixelmuerto
+Plug 'juanpabloaj/vim-pixelmuerto'
 
-Plug 'mbbill/vim-seattle'           " Bad for haskell
-" ???
+" seattle
+Plug 'mbbill/vim-seattle'
 
-Plug 'AlessandroYorba/Sierra'       " Bad for haskell, good for others
-" ???
+" sierra
+Plug 'AlessandroYorba/Sierra'
 
-Plug 'jacoborus/tender.vim'         " Bright
 " tender
+Plug 'jacoborus/tender.vim'
 
 " to pick up new colorscheme
 " Plug 'flazz/vim-colorschemes'
@@ -104,40 +104,43 @@ colorscheme codedark
 " === Plugin Configuring ===
 " ==========================
 
+" Configure fixers
 let g:ale_fixers = {
     \ '*': ['trim_whitespace'],
     \ 'python': ['black', 'isort'],
     \ 'rust': ['rustfmt'],
   \ }
-    " \ 'javascript': ['prettier']
 
+" I don't recommend using prettier like this:
+"" \ 'javascript': ['prettier']
+" Instead, there is an extension vim-prettier, which does the job faster
+
+" Configure linter
 let g:ale_linters = {
     \ 'python': ['flake8'],
     \ 'javascript': ['eslint'],
   \ }
 
+" Fix on save
 let g:ale_fix_on_save = 1
 
-" add autoimport functionality
+" Add autoimport functionality (typescript)
 let g:ale_completion_autoimport = 1
 
 " Show hidden files in directory tree
 let g:NERDTreeShowHidden=1
 
-" autoformatting
+" Autoformatting
 let g:prettier#autoformat = 1
 
-" do not require @format or @prettier tags
+" Do not require @format or @prettier tags
 let g:prettier#autoformat_require_pragma = 0
 
-" force async
+" Force async
 let g:prettier#exec_cmd_async = 1
 
-" Kite
+" Kite - in case you use it
 let g:kite_supported_languages = ['python', 'javascript', 'go']
-
-" idk
-" let g:airline#extensions#whitespace#enabled = 1
 
 " codedark theme for airline
 let g:airline_theme = 'codedark'
@@ -158,12 +161,8 @@ let g:airline_section_x = ''
 let g:airline_section_c = '%<%<%{airline#extensions#fugitiveline#bufname()}%m
 \ %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
 
-" 233 - darkest, 239 - lightest
-"let g:seoul256_background = 237
-
+" Cycle through coc suggestions with tab
 let g:coc_snippet_next = '<tab>'
-
-let g:haskell_classic_highlighting = 1
 
 
 " ===================
@@ -179,8 +178,6 @@ filetype indent on
 set autoread
 
 au FocusGained,BufEnter * checktime
-
-" au BufEnter *.py :let $PYTHONPATH .= ':' . $PWD . '/backend:' . $PWD . '/backend/apps'
 
 " :W sudo save
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
@@ -446,8 +443,8 @@ endif
 set completeopt-=preview
 
 " Kite's requirements
-"set completeopt+=menuone
-"set completeopt+=noinsert
+" set completeopt+=menuone
+" set completeopt+=noinsert
 
 " Returns true if paste mode is enabled
 function! HasPaste()
