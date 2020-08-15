@@ -10,9 +10,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Prettier
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
-" Vim isort
-Plug 'fisadev/vim-isort'
-
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
@@ -109,7 +106,7 @@ colorscheme codedark
 
 let g:ale_fixers = {
     \ '*': ['trim_whitespace'],
-    \ 'python': ['black'],
+    \ 'python': ['black', 'isort'],
     \ 'rust': ['rustfmt'],
   \ }
     " \ 'javascript': ['prettier']
@@ -182,6 +179,8 @@ filetype indent on
 set autoread
 
 au FocusGained,BufEnter * checktime
+
+" au BufEnter *.py :let $PYTHONPATH .= ':' . $PWD . '/backend:' . $PWD . '/backend/apps'
 
 " :W sudo save
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
@@ -321,7 +320,6 @@ vmap / gc
 set laststatus=2
 
 " Format the status line
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
 "set statusline=\ %{HasPaste()}%f%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
@@ -336,8 +334,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
 " Code movements
-map <A-Right> <C-i>
-map <A-Left> <C-o>
+map <C-A-Right> <C-i>
+map <C-A-Left> <C-o>
 
 " Command pallette shortcut for ctrl-shift-p
 map <C-S-p> :CocCommand<cr>
@@ -418,6 +416,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " Python
 au BufNewFile,BufRead *.py call s:python_setup()
+au FileType python let b:coc_root_patterns = ['.git', '.env']
 
 " Languages that uses 4 spaces instead of 2
 au BufNewFile,BufRead *.py call s:four_spaces()
@@ -425,7 +424,18 @@ au BufNewFile,BufRead *.py call s:four_spaces()
 " Markdown automatic line breaking
 au BufNewFile,BufRead *.md set tw=120
 
-au BufWritePre *.py :Isort
+" JSONC comment matching
+au FileType json syntax match Comment +\/\/.\+$+
+
+
+" ======================
+" === Project locals ===
+" ======================
+
+" If .vim/locals.vim file exists, source it
+if filereadable(".vim/locals.vim")
+  source .vim/locals.vim
+endif
 
 
 " =============
@@ -478,4 +488,3 @@ endfunction
 function! s:four_spaces()
   setlocal ts=4 sts=4 sw=4
 endfunction
-
