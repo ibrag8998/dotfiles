@@ -13,6 +13,15 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
+" Vue syntax highlight
+Plug 'leafOfTree/vim-vue-plugin'
+
+" Color name highlighter
+Plug 'ap/vim-css-color'
+
+" TypeScript support for vim
+Plug 'leafgarland/typescript-vim'
+
 " Surround plugin
 Plug 'tpope/vim-surround'
 
@@ -73,22 +82,22 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tomasiser/vim-code-dark'
 
 " gruvbox
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 
 " seoul256
-Plug 'junegunn/seoul256.vim'
+" Plug 'junegunn/seoul256.vim'
 
 " pixelmuerto
-Plug 'juanpabloaj/vim-pixelmuerto'
+" Plug 'juanpabloaj/vim-pixelmuerto'
 
 " seattle
-Plug 'mbbill/vim-seattle'
+" Plug 'mbbill/vim-seattle'
 
 " sierra
-Plug 'AlessandroYorba/Sierra'
+" Plug 'AlessandroYorba/Sierra'
 
 " tender
-Plug 'jacoborus/tender.vim'
+" Plug 'jacoborus/tender.vim'
 
 " to pick up new colorscheme
 " Plug 'flazz/vim-colorschemes'
@@ -141,6 +150,11 @@ let g:prettier#exec_cmd_async = 1
 
 " Kite - in case you use it
 let g:kite_supported_languages = ['python', 'javascript', 'go']
+
+" Vue plugin enable features
+let g:vim_vue_plugin_use_typescript = 1
+let g:vim_vue_plugin_use_scss = 1
+let g:vim_vue_plugin_highlight_vue_attr = 1
 
 " codedark theme for airline
 let g:airline_theme = 'codedark'
@@ -406,6 +420,8 @@ nmap <silent> gr <Plug>(coc-references)
 " Terminal mode exit shortcut
 tnoremap <Esc> <C-\><C-n>
 
+let g:user_emmet_leader_key='<C-a>'
+
 
 " ======================
 " === Language setup ===
@@ -414,6 +430,9 @@ tnoremap <Esc> <C-\><C-n>
 " Python
 au BufNewFile,BufRead *.py call s:python_setup()
 au FileType python let b:coc_root_patterns = ['.git', '.env']
+
+" JavaScript and Vue
+au FileType javascript,vue let b:coc_root_patterns = ['.git', 'package.json']
 
 " Languages that uses 4 spaces instead of 2
 au BufNewFile,BufRead *.py call s:four_spaces()
@@ -452,7 +471,7 @@ function! HasPaste()
         return 'PASTE MODE  '
     endif
     return ''
-endfunction
+endfunction Vue plugin enable features
 
 " Used for some visual mode mappings
 function! VisualSelection(direction, extra_filter) range
