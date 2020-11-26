@@ -1,24 +1,11 @@
 set PATH $PATH \
     $HOME/.local/bin \
-    /opt/firefox/firefox \
-    $HOME/development/flutter/bin \
-    /usr/local/go/bin \
-    $HOME/.npm_global/bin
-set JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64"
+    $HOME/anaconda3/bin/
 
 alias v='nvim'
 
-alias acve='. venv/bin/activate.fish'
-alias deac='deactivate'
-
-alias ll='ls -Ahl'
+alias ll='ls -ahl'
 alias l='ls -hl'
-
-alias mkvenv='python -m venv venv && . venv/bin/activate.fish && pip install wheel && pip install black flake8-awesome mypy'
-
-alias isol='mkdir isol ; cd isol'
-
-alias mgrt='python manage.py makemigrations && python manage.py migrate'
 
 
 function sudo!!
