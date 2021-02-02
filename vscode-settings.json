@@ -1,77 +1,91 @@
 {
-  "editor.formatOnSave": true,
-  "editor.rulers": [88, 120],
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.tree.indent": 12,
-  "explorer.confirmDelete": false,
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000,
-  "files.trimTrailingWhitespace": true, // required
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true
-  },
-  "files.associations": {
-    "*.svelte": "html",
-    "**/*.html": "html",
-    "**/templates/**/*.html": "django-html",
-    "**/templates/**/*": "django-txt",
-    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
-  },
-  "emmet.includeLanguages": { "django-html": "html" },
-  "python.formatting.provider": "black", // required
-  "python.linting.pylintEnabled": false, // required
-  "python.linting.flake8Enabled": true, // required
-  "python.linting.mypyEnabled": true, // required
-  "python.sortImports.args": ["-rc", "-sp isort.cfg"], // required
-  "python.showStartPage": false,
-  "prettier.semi": false, // required
-  "beautify.language": {
-    "js": {
-      "type": ["javascript", "json", "jsonc"],
-      "filename": [".jshintrc", ".jsbeautifyrc"]
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.vim": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cache": true,
+        "**/__pycache__": true,
     },
-    "css": ["css", "less", "scss"],
-    "html": ["htm", "html", "django-html"]
-  },
-  "[html]": {
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
+
+    "editor.rulers": [120],
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "HookyQR.beautify"
-  },
-  "[css]": { "editor.tabSize": 2 },
-  "[sass]": { "editor.tabSize": 2 },
-  "[scss]": { "editor.tabSize": 2 },
-  "[json]": { "editor.tabSize": 2 },
-  "[vue]": { "editor.tabSize": 2 },
-  "[django-html]": {
-    "editor.tabSize": 2
-  },
-  "[javascript]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[python]": {
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true // required
-    }
-  },
-  "explorer.confirmDragAndDrop": false,
-  "gitlens.hovers.currentLine.over": "line",
-  "gitlens.currentLine.enabled": false,
-  "gitlens.codeLens.enabled": false,
-  "gitlens.statusBar.enabled": false,
-  "window.zoomLevel": 0,
-  "kite.showWelcomeNotificationOnStartup": false,
-  "vsicons.dontShowNewVersionMessage": true,
-  "editor.renameOnType": true,
-  "kite.showGoBetaNotification": false
+    "editor.formatOnSave": false,
+
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.tree.indent": 10,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Default Dark+",
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "window.zoomLevel": 0,
+
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+
+    "python.formatting.provider": "autopep8",
+    "python.linting.pylintEnabled": false,
+    "python.showStartPage": false,
+    "python.languageServer": "Pylance",
+
+    "prettier.semi": false,
+
+    "beautify.language": {
+        "js": {
+            "type": ["javascript", "json", "jsonc"],
+            "filename": [".jshintrc", ".jsbeautifyrc"]
+        },
+        "css": ["css", "less", "scss"],
+        "html": ["htm", "html", "django-html"]
+    },
+
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.statusBar.enabled": false,
+    "gitlens.codeLens.authors.enabled": false,
+    "gitlens.codeLens.scopes": ["document", "containers", "blocks"],
+
+    "tabnine.experimentalAutoImports": true,
+
+    "git.enableSmartCommit": true,
+
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4,
+    },
+    "[django-html]": {
+      "editor.defaultFormatter": "HookyQR.beautify"
+    },
 }
